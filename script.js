@@ -5,18 +5,19 @@ const button = document.querySelector('header button')
 button.addEventListener('click', add)
 form.addEventListener("change", save)
 
-
 function add() {
     const today = new Date().toLocaleDateString('pt-br').slice(0, -5)
     const dayExists = nlwSetup.dayExists(today)
 
     if (dayExists) {
-        alert("Dia ja incluso")
+        alert("Day Already Included 🔴")
         return
     }
 
+    alert("Successfully Added ✅")
     nlwSetup.addDay(today)
 }
+
 function save() {
     localStorage.setItem('SaveData@habit',JSON.stringify(nlwSetup.data))
 }
@@ -24,5 +25,3 @@ function save() {
 const data = JSON.parse(localStorage.getItem('SaveData@habit')) || {}
 nlwSetup.setData(data)
 nlwSetup.load()
-
-
